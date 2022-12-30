@@ -2,21 +2,23 @@ from flask import Flask, render_template, request, url_for, redirect
 from translate import Translator
 from flask_sqlalchemy import SQLAlchemy
 
+
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 
 class Cad(db.Model):
-    #__tablename__ = 'cadastro'
+    __tablename__ = 'cadastro'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(100)) 
     
     def __init__(self, email):
         self.email = email
-
-db.create_all()
+with app.app_context():
+    db.create_all()
 
 @app.route("/")
 
