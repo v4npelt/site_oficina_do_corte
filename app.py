@@ -17,6 +17,7 @@ class Cad(db.Model):
     
     def __init__(self, email):
         self.email = email
+
 with app.app_context():
     db.create_all()
 

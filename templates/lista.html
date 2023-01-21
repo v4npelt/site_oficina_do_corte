@@ -1,14 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
 	<title>Lista de cadastro</title>
 	<!--
-
     Template 2106 Soft Landing
-
 	http://www.tooplate.com/view/2106-soft-landing
-
     -->
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -16,29 +13,36 @@
      <meta name="keywords" content="">
      <meta name="team" content="">
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <!-- Bootstrap CSS --> 
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">   
+     
+     <link rel="stylesheet"  type="text/css" href={{url_for('static', filename='css/bootstrap.min.css')}}>
      
      <!-- MAIN CSS -->
      <link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/tooplate-style.css')}}>
     
 </head>
 
-<body style="border:1;">
-    <h1>Lista de cadastro</h1>
+<body class ="container" style="border:1;">
+    <h1 class="jumbotron">Lista de cadastro</h1>
         <hr>
     
-    <table>
+    <table class="table">
         <tr>
-            <td>id</td>
-            <td>email</td>
+            <th>id</th>
+            <th></th>
+            <th>email</th>
         </tr>
                
         {% for c in cad %}  
                <tr>          
                 <td>{{c.id}}</td>
+                <td></td>                
                 <td>{{c.email}}</td>
                
                 <td> 
-                    <a href="/delete/{{c.id}}" class=btn tbn-danger btn-xs onclick="return confirm('Deletar?')">Delete</a> 
+                    <a href="/delete/{{c.id}}" class = "btn btn-danger" onclick="return confirm('Deletar?')">Delete</a> 
 
                 </td>
                </tr>     
