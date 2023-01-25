@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, url_for, redirect 
 from translate import Translator
 from flask_sqlalchemy import SQLAlchemy
+import smtplib
+from email.message import EmailMessage
 
 
 
@@ -20,6 +22,7 @@ class Cad(db.Model):
 
 with app.app_context():
     db.create_all()
+
 
 @app.route("/")
 
@@ -46,17 +49,37 @@ def lista():
     print(cad) 
     return render_template('lista.html', cad=cad)
 
+
+
+@app.route("/send_email", methods = ["GET", "POST"])
+def send_email():
+
+    if request.method == 'POST':
+        email_client = request.form['email']
+        name = request.form['name']
+        msg_client = request.form['msg']
+
+        EMAIL_ADRESS = 't35t3con74@gmail.com'
+        EMAIL_PASSWORD = '35qu3c1123'
+
+        msg = EmailMessage()
+        msg['Subject'] = email_client
+        msg['From'] = name
+        msg['To'] = EMAIL_ADRESS
+        msg.set_content(msg_client)
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+            smtp.login(EMAIL_ADRESS, EMAIL_PASSWORD)
+            smtp.send_message(msg)
+
+
+
 @app.route('/delete/<id>/', methods = ["GET", "POST"])
-def delete(id):
+def delete(id):  
     data = Cad.query.get(id)
     db.session.delete(data)
     db.session.commit()
     return redirect(url_for('lista'))
-
-@app.route("/sort", methods = ["GET", "POST"])
-def sort():
-    pass
-
        
 if __name__ == '__main__':
     app.run(debug= True, port=5050)
+
