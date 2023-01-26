@@ -82,5 +82,7 @@ def delete(id):
     return redirect(url_for('lista'))
        
 if __name__ == '__main__':
-    app.run(debug= True, port=5050)
+    #app.run(debug= True, port=5050)
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)
 
