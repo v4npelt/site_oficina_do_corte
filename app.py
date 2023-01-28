@@ -60,7 +60,7 @@ def send_email():
         output = request.form.to_dict()
         name = output['name']
         email_client = output['email']
-        msg_client = output['msg']
+        msg_client = output['message']
 
         EMAIL_ADRESS = 't35t3con74@gmail.com'
         EMAIL_PASSWORD = '35qu3c1123'
