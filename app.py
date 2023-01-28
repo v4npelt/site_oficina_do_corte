@@ -56,9 +56,11 @@ def lista():
 def send_email():
 
     if request.method == 'POST':
-        email_client = request.form['email']
-        name = request.form['name']
-        msg_client = request.form['msg']
+
+        output = request.form.to_dict()
+        name = output['name']
+        email_client = output['email']
+        msg_client = output['msg']
 
         EMAIL_ADRESS = 't35t3con74@gmail.com'
         EMAIL_PASSWORD = '35qu3c1123'
